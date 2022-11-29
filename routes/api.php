@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'contacts'], function(){
+    Route::get('/', [ContactController::class, 'all'])->name('contact.index');
+    Route::post('/create', [ContactController::class, 'store'])->name('contact.create');
+});
