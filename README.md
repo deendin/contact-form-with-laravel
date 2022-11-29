@@ -5,9 +5,9 @@ This solution is a simple contact form API service (no frontend expected).
 
 At a minimum this solution provides the ability to:
 
-1. Create a message (name, email address and message) and
+1. Create a message (name, email address and message)
 2. View messages
-3. An email notification gets sent to an admin when the contact form API (create) service is triggered. To change the recipient of this email, the .env.example file needs to be updated with a new value. The key is called :  email can be found in the `.env.example` file, if there is no value for this email, the fallback email would be the one set in the constant file called: `admin_email` with a value of `admin@example.com`
+3. Notify an admin when the contact form API (create) service is triggered. To change the recipient of this email, the .env.example file needs to be updated with a new value. The key is called :  email can be found in the `.env.example` file, if there is no value for this email, the fallback email would be the one set in the constant file called: `admin_email` with a value of `admin@example.com`
 
 ### How has this been done?
 
