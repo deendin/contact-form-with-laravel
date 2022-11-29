@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "0b56b12b-a125-4c2e-84f0-78675174112b",
+		"name": "NEVER_WHATIF",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13891745"
+	},
+	"item": [
+		{
+			"name": "Create Contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Nurudeen Ajayi",
+							"type": "text"
+						},
+						{
+							"key": "email_address",
+							"value": "nurudeen@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "message",
+							"value": "cool cool cool",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:9000/api/contact/create",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"contact",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SHOW CONTACTS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5050/api/contacts",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
