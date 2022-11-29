@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Contact;
+use App\Observers\ContactObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->registerModelObservers();
+    }
+
+    /**
+     * Registers custom model observers.
+     * 
+     */
+    protected function registerModelObservers()
+    {
+        Contact::observe(ContactObserver::class);
     }
 }
