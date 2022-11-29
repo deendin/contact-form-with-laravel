@@ -1,66 +1,50 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Basic Contact Api Service with Laravel.
+## What does this solution do?
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This solution is a simple contact form API service (no frontend expected).
 
-## About Laravel
+At a minimum this solution provides the ability to:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Create a message (name, email address and message) and
+2. View messages
+3. An email notification gets sent to an admin when the contact form API (create) service is triggered. To change the recipient of this email, the .env.example file needs to be updated with a new value. The key is called :  email can be found in the `.env.example` file, if there is no value for this email, the fallback email would be the one set in the constant file called: `admin_email` with a value of `admin@example.com`
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### How has this been done?
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- I have followed the TDD approach by having some feature testing in place by testing ability to create contact and view contact.
+- After completing these tests, I started creating the application logic, controllers, routes, models and model factories.
+- I used laravel's form requests for data validation and model resources and model resource collection to transform and expost the data to the enduser/api consumer.
+- After successfully creating a contact, there is an observer that observes and automatically generates and assign a uuid to the new record.
+- When a contact is saved, an admin receives this notification with the sender of the contact form, their email address and the message body.
+- This implementation uses an action `App\Actions\CreateContact` to implement the business logic.
+- This implementation uses model resources in exposing some information from our databases and can be found in `App\Http\Resources` and expose the data returned from the Contact Model to the user.
 
-## Learning Laravel
+### Tooling
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- [Composer] for dependency management.
+- [PhpUnit] [PhpUnit] for the test suite.
+- [Mailhog] for email service provider.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Getting started
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Before setting up this repository, the following are the dependencies that needs to be available on your machine:
 
-## Laravel Sponsors
+- Composer
+- PHP (I have PHP 8.1.11 installed)
+- Mailhog (as seen in the .env.exaple file). For more information about setup and instructions, see here for more info: https://github.com/mailhog/MailHog
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+## Setup & Instruction
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+1. Clone the repository: `git clone https://github.com/deendin/contact-form-with-laravel.git`
+2. Assuming that the Dependencies listed above are satisfied, you can ```cd``` into the directory called ```contact-form-with-laravel.git```
+3. When inside this repository directory, run ```composer install``` to install the project dependencies.
+4. To test, make sure you are still in this repository directory and in your terminal, to run the test suite run ```vendor/bin/phpunit``` for the test.
 
-## Contributing
+## What I could have done better if I had more time:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Add ability to fetch a single contact.
+2. Properly handle the API exceptions, possibly in the Handler file or have a custom exception that will be wrapped around a try catch just incase an unknown exception occurs.
+3. Add user auth and authorization checks/Gate or policy before allowing the create contact request logic to get executed in the CreateContact Action. This is expected to check if the authed user has the permission to perform the intended request.
+4. Add Github Action for PHP-CS-Fixer that will be triggered before commit or push. This will act like a pre-commit.
+5. Have a basic front end to allow creation of the contact.
