@@ -7,11 +7,11 @@ At a minimum this solution provides the ability to:
 
 1. Create a message (name, email address and message)
 2. View messages
-3. Notify an admin when the contact form API (create) service is triggered. To change the recipient of this email, the .env.example file needs to be updated with a new value. The key is called :  email can be found in the `.env.example` file, if there is no value for this email, the fallback email would be the one set in the constant file called: `admin_email` with a value of `admin@example.com`
+3. Notify an admin when the contact form API (create) service is triggered. To change the recipient of this email, the `.env.example` file needs to be updated with a new value. The key is called :  `email` and can be found in the `.env.example` file, if there is no value for this email, the fallback email would be the one set in the constant file called: `admin_email` with a value of `admin@example.com`
 
 ### How has this been done?
 
-- I have followed the TDD approach by having some feature testing in place by testing ability to create contact and view contact.
+- I have followed the TDD approach by having some feature testing in place by testing ability to create contact and view contact before implementation.
 - After completing these tests, I started creating the application logic, controllers, routes, models and model factories.
 - I used laravel's form requests for data validation and model resources and model resource collection to transform and expost the data to the enduser/api consumer.
 - After successfully creating a contact, there is an observer that observes and automatically generates and assign a uuid to the new record.
