@@ -48,10 +48,11 @@ Before setting up this repository, the following are the dependencies that needs
 At a minimum we are looking to take a message (name, email address and message) and view messages.
 
 ## Example Input
-![Example Input Data](https://github.com/[deendin]/[contact-form-with-laravel]/blob/[main]/public/example_inputput.png?raw=true)
+<img width="1302" alt="example_input" src="https://user-images.githubusercontent.com/118926333/204593286-0bb7e4e5-4c11-4e2f-9810-e367d1760d36.png">
 
 ## Example Output
-![Example Output Via Mailhog](https://github.com/[deendin]/[contact-form-with-laravel]/blob/[main]/public/example_output.png?raw=true)
+
+<img width="1594" alt="example_output" src="https://user-images.githubusercontent.com/118926333/204593291-e2590045-4a9d-42cb-a0da-0092fbcd51c6.png">
 
 ## Postman Collection for testing
 This can be found in the public directory. This file is called `contact_api_service.postman_collection.json`
