@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Contact\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'contacts'], function(){
-    Route::get('/', [ContactController::class, 'all'])->name('contact.index');
+    Route::get('/', [ContactController::class, 'index'])->name('contact.index');
     Route::post('/create', [ContactController::class, 'store'])->name('contact.create');
+});
+
+Route::fallback(function(){
+    return response()->json([
+        'data' => [],
+        'message' => 'Endpoint Not Found. If this error persists, make sure you insert the appropriate endpoint or talk to the dev team.',
+        'status' => 'false'
+    ], 
+    404);
 });
