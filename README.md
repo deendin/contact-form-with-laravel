@@ -39,7 +39,22 @@ Before setting up this repository, the following are the dependencies that needs
 1. Clone the repository: `git clone https://github.com/deendin/contact-form-with-laravel.git`
 2. Assuming that the Dependencies listed above are satisfied, you can ```cd``` into the directory called ```contact-form-with-laravel.git```
 3. When inside this repository directory, run ```composer install``` to install the project dependencies.
-4. To test, make sure you are still in this repository directory and in your terminal, to run the test suite run ```vendor/bin/phpunit``` for the test.
+4. Modify the .env file and set the required database credentials.
+5. Run `php artisan migrate` to generate the database tables.
+6. To test, make sure you are still in this repository directory and in your terminal, to run the test suite run ```vendor/bin/phpunit``` for the test.
+7. Go to your email service provider either Mailtrap or Mailhog (http://0.0.0.0:8025/), but I have tested this on Mailhog, you should see an email that contains the contact message, name and email.
+
+## Task specification
+At a minimum we are looking to take a message (name, email address and message) and view messages.
+
+## Example Input
+![Example Input Data](https://github.com/[deendin]/[contact-form-with-laravel]/blob/[main]/public/example_inputput.png?raw=true)
+
+## Example Output
+![Example Output Via Mailhog](https://github.com/[deendin]/[contact-form-with-laravel]/blob/[main]/public/example_output.png?raw=true)
+
+## Postman Collection for testing
+This can be found in the public directory. This file is called `contact_api_service.postman_collection.json`
 
 ## What I could have done better if I had more time:
 
